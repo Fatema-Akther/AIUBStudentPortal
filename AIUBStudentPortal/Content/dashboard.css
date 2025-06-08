@@ -1,0 +1,805 @@
+﻿/* --- General Body and Container Resets --- */
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    font-size: 0.88em;
+    margin: 0;
+    background-color: #f0f2f5; /* Light grey background to match demo */
+}
+
+/* AIUB Header Container - Main horizontal bar */
+.aiub-header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff; /* White background */
+    color: #007bff; /* Default text color for direct children if not overridden */
+    padding: 8px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid #007bff; /* Blue border all around */
+    border-radius: 5px;
+    margin: 10px 20px; /* Margin to lift it off the browser edge and from content below */
+    box-sizing: border-box;
+}
+/* AIUB Portal Logo section */
+.aiub-portal-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+    .aiub-portal-logo img {
+        height: 38px;
+        width: auto;
+    }
+
+    .aiub-portal-logo .logo-text {
+        display: flex;
+        flex-direction: column;
+        font-size: 1.2em;
+        font-weight: bold;
+        line-height: 1;
+    }
+
+        .aiub-portal-logo .logo-text span:first-child {
+            color: #007bff;
+        }
+
+        .aiub-portal-logo .logo-text span:last-child {
+            font-size: 0.65em;
+            color: #007bff;
+        }
+
+/* AIUB Navigation */
+.aiub-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+
+.aiub-nav li {
+    margin: 0;
+}
+
+.aiub-nav .nav-link {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95em;
+    padding: 5px 0;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+    .aiub-nav .nav-link:hover {
+        color: #0056b3;
+    }
+
+    .aiub-nav .nav-link i {
+        margin-right: 6px;
+        font-size: 1em;
+    }
+
+/* AIUB User Info */
+.aiub-user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+    .aiub-user-info .welcome-text {
+        font-size: 0.95em;
+        font-weight: 600;
+        color: #007bff;
+        white-space: nowrap;
+    }
+
+    .aiub-user-info .header-icon-link {
+        color: #007bff;
+        font-size: 1.1em;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+        .aiub-user-info .header-icon-link:hover {
+            color: #0056b3;
+        }
+
+/* --- NEW: Main Dashboard Layout for Sidebar and Content --- */
+.main-dashboard-layout {
+    display: flex; /* Enables flexbox for side-by-side layout */
+    margin: 0 20px 20px 20px; /* Adjust margin to align with header and add bottom margin */
+    align-items: flex-start; /* Aligns items to the top */
+    gap: 20px; /* Space between sidebar and main content */
+}
+
+/* --- NEW: Left Sidebar (Menubar) --- */
+.left-sidebar {
+    width: 250px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 0; /* Changed: No vertical padding for the container itself */
+    flex-shrink: 0;
+    /* Optional: Add a subtle right border if the overall layout needs more definition */
+    /* border-right: 1px solid #e0e0e0; */
+}
+
+    .left-sidebar ul {
+        list-style: none; /* Remove bullet points */
+        padding: 0;
+        margin: 0;
+    }
+
+.menu-item {
+    /* margin-bottom: 0; */ /* You can remove this line entirely if you want no vertical gap, or keep it for a tiny gap */
+}
+
+    .menu-item a {
+        display: flex;
+        align-items: center;
+        background-color: #003366; /* Dark blue background */
+        color: #fff; /* White text */
+        padding: 12px 15px;
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: 500;
+        transition: background-color 0.2s ease, color 0.2s ease;
+        border-bottom: 1px solid #002244; /* Slightly darker border for separation */
+    }
+
+/* Add this to remove bottom border from the last item */
+.left-sidebar ul li:last-child a {
+    border-bottom: none;
+}
+
+.menu-item a:hover {
+    background-color: #004488; /* Slightly lighter dark blue on hover */
+    color: #fff;
+}
+/* Removed specific `.menu-item.active a` styles for background/color, as all are now blue by default */
+/* If you need an active state different from the blue default, you'd re-add and adjust these */
+.menu-item.active a {
+    /* Example: If you want a *slightly* different blue for active */
+    background-color: #0069d9; /* A bit darker blue for the active main item */
+}
+
+
+.menu-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    color: #fff; /* Set icon color to white */
+    /* If you had filters before, ensure they are removed or set to 'none' */
+    /* filter: none; */
+}
+
+.dropdown-arrow {
+    margin-left: auto;
+    font-size: 10px;
+    color: #fff; /* Set arrow color to white */
+    transition: transform 0.2s ease; /* Change transition to transform */
+}
+
+/* Submenu Styling */
+.submenu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: #fff; /* White background for submenu */
+    display: none; /* Hidden by default */
+    border: 1px solid #e0e0e0; /* Subtle border for the submenu box */
+    border-top: none; /* No top border to connect it to the parent */
+    border-bottom-left-radius: 5px; /* Rounded bottom corners */
+    border-bottom-right-radius: 5px; /* Rounded bottom corners */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Subtle shadow */
+    margin-left: 0; /* Adjust to align with parent if needed */
+    margin-right: 0; /* Adjust to align with parent if needed */
+}
+
+    .submenu li a {
+        display: flex;
+        align-items: center;
+        padding: 8px 15px 8px 25px;
+        background-color: #ffffff; /* Explicitly set white background for clarity */
+        color: #007bff; /* Blue text */
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: normal;
+        transition: background-color 0.2s ease, color 0.2s ease;
+        border-bottom: 1px solid #f0f0f0; /* Use solid border as seen in 4.png */
+    }
+
+    .submenu li:last-child a {
+        border-bottom: none; /* Remove border from the last sub-item */
+    }
+
+    .submenu li a:hover {
+        background-color: #f7f7f7; /* Lighter off-white on hover, as seen in 4.png */
+        color: #007bff; /* Keep text blue on hover */
+    }
+
+
+.sub-menu-icon {
+    margin-right: 8px; /* Space between sub-icon and text */
+    font-size: 0.9em; /* Slightly smaller icon size */
+    color: #007bff; /* Blue icon color */
+}
+
+/* Show submenu when parent is active (or on hover for simple demo) */
+.menu-item.active .submenu {
+    display: block; /* Show the submenu when its parent is active */
+}
+
+/* Rotate arrow when submenu is open */
+.menu-item.active .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+
+/* --- NEW: Right Content Area --- */
+.right-content {
+    flex-grow: 1; /* Allows the content area to take up remaining space */
+    display: flex;
+    flex-direction: column; /* Stack content boxes vertically */
+    gap: 20px; /* Space between content boxes */
+}
+
+/* --- Existing Teams Info Panel (MODIFIED for structure) --- */
+.teams-info {
+    /* Remove outer margin and border from here as it's now handled by .right-content and its children */
+    /* margin: 20px; */ /* REMOVE THIS LINE */
+    /* border: 1px solid #c2dfc2; */ /* REMOVE THIS LINE */
+    border-radius: 5px; /* Keep border-radius */
+    overflow: hidden; /* Ensures child borders are contained */
+    font-family: Arial, sans-serif; /* Keep font */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Add shadow to match image */
+}
+
+/* Info Box: Flex container for left and right (MODIFIED) */
+.info-box {
+    display: flex;
+    background-color: #f7fff2; /* Lighter green background to match image */
+    border: 1px solid #d4edda; /* Light green border to match image */
+    padding: 15px;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    border-bottom: none; /* No bottom border for this part */
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-radius: 5px; /* Apply to top corners */
+}
+
+/* info-left styles */
+.info-left,
+.info-right {
+    flex: 1 1 300px;
+    min-width: 280px;
+}
+
+    .info-left h4 {
+        margin-top: 0;
+        color: #28a745; /* Dark green for header to match image */
+        font-weight: bold; /* Bold as per image */
+        font-size: 1em;
+    }
+
+    .info-left table {
+        margin-top: 10px;
+        border-collapse: collapse;
+        width: 100%;
+        font-size: 0.9em;
+        border: none; /* Remove table border */
+    }
+
+        .info-left table tbody tr:nth-child(odd),
+        .info-left table tbody tr:nth-child(even) {
+            background-color: transparent; /* No background for table rows */
+        }
+
+        .info-left table td {
+            padding: 5px 0; /* Adjust padding for table cells */
+            border: none; /* Remove cell borders */
+            vertical-align: top; /* Align content to top */
+        }
+
+            .info-left table td:first-child {
+                font-weight: normal; /* Labels are not bold in image */
+                color: #555; /* Greyer color for labels */
+                width: 90px; /* Fixed width for labels to align colons */
+                padding-right: 5px;
+            }
+
+            .info-left table td:nth-child(2) {
+                width: 10px;
+                text-align: center;
+                font-weight: normal; /* Colon is not bold */
+                color: #555; /* Greyer color for colon */
+            }
+
+            .info-left table td:last-child {
+                color: #333;
+                font-weight: normal;
+            }
+
+/* Styling for the Microsoft Teams login card (MODIFIED) */
+.teams-login-card {
+    background-color: #e9ffe6; /* Lighter green for this box */
+    border: 1px solid #c3e6cb; /* Light green border */
+    padding: 15px;
+    border-radius: 5px;
+    /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); */ /* Remove inner shadow */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+    .teams-login-card h4 {
+        margin-bottom: 10px;
+        margin-top: 0;
+        color: #555; /* Greyer text for this h4 */
+        font-size: 14px; /* Smaller font size */
+        font-weight: normal;
+    }
+
+    .teams-login-card .download-btn {
+        margin-top: auto; /* Push button to bottom */
+        background-color: #007bff; /* Blue button */
+        color: white;
+        padding: 8px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: 500; /* Slightly less bold */
+        transition: background-color 0.3s ease;
+        font-size: 0.9em;
+    }
+
+        .teams-login-card .download-btn:hover {
+            background-color: #0056b3;
+        }
+
+/* General Info Box (MODIFIED) */
+.general-info-box {
+    background-color: #fff4cc; /* Light yellow background */
+    border: 1px solid #ffeaa7; /* Yellow border */
+    border-top: none; /* No top border, as it connects to the previous section */
+    padding: 10px 15px;
+    font-size: 0.95em;
+    border-bottom-left-radius: 0; /* Remove bottom border radius */
+    border-bottom-right-radius: 0; /* Remove bottom border radius */
+    border-radius: 0; /* Remove all border-radius, except for top corners of info-box */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Add shadow to match image */
+    margin-top: -1px; /* Overlap border */
+}
+
+    .general-info-box p {
+        margin: 0;
+        color: #555; /* Greyer text */
+    }
+
+    .general-info-box .link-blue {
+        color: #007bff;
+        text-decoration: none;
+        font-weight: bold; /* Match image */
+    }
+
+        .general-info-box .link-blue:hover {
+            text-decoration: underline;
+        }
+
+/* Info Actions Buttons Container (MODIFIED) */
+.info-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    background-color: #e6f4e6; /* Match info-box background */
+    padding: 15px;
+    border: 1px solid #c2dfc2; /* Add border to bottom section */
+    border-top: none; /* No top border */
+    border-bottom-left-radius: 5px; /* Add bottom border radius */
+    border-bottom-right-radius: 5px; /* Add bottom border radius */
+    margin-top: -1px; /* Overlap border */
+}
+
+/* Info buttons styling (MODIFIED) */
+.info-btn {
+    background-color: #5bc0de; /* Light blue button */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9em; /* Smaller font size */
+    transition: background-color 0.3s ease;
+}
+
+    .info-btn:hover {
+        background-color: #31b0d5;
+    }
+
+/* Course Registration Section (MODIFIED for margin) */
+.dashboard-heading {
+    /* margin: 20px; */ /* REMOVE THIS LINE, margin handled by parent .right-content gap */
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+    .dashboard-heading h2 {
+        margin: 0;
+        font-size: 1.2em; /* Smaller font size */
+        color: #333;
+    }
+
+    .dashboard-heading p {
+        margin: 0;
+    }
+
+    .dashboard-heading .btn {
+        padding: 8px 15px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+        display: inline-block;
+    }
+
+    .dashboard-heading .btn-success {
+        background-color: #28a745;
+        color: white;
+    }
+
+        .dashboard-heading .btn-success:hover {
+            background-color: #218838;
+        }
+
+    .dashboard-heading .btn-danger {
+        background-color: #dc3545;
+        color: white;
+    }
+
+        .dashboard-heading .btn-danger:hover {
+            background-color: #c82333;
+        }
+
+    .dashboard-heading .btn-primary {
+        background-color: #007bff;
+        color: white;
+    }
+
+        .dashboard-heading .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+/* Horizontal Rule (Divider) (MODIFIED for margin) */
+hr {
+    border: none;
+    border-top: 1px solid #eee;
+    /* margin: 20px; */ /* REMOVE THIS LINE, margin handled by parent .right-content gap */
+}
+
+/* Class Schedule Section (MODIFIED for margin) */
+.class-schedule-container {
+    /* margin: 20px; */ /* REMOVE THIS LINE, margin handled by parent .right-content gap */
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    padding: 15px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+    .class-schedule-container h2 {
+        background-color: #007bff;
+        color: white;
+        padding: 10px 15px;
+        margin: -15px -15px 15px -15px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        font-size: 1.15em;
+        font-weight: normal;
+    }
+
+.class-schedule-day {
+    display: flex;
+    margin-bottom: 10px;
+    align-items: flex-start;
+    padding: 5px 0;
+    border-bottom: 1px dashed #f0f0f0;
+}
+
+    .class-schedule-day:last-child {
+        border-bottom: none;
+    }
+
+.class-schedule-date {
+    width: 150px;
+    font-weight: bold;
+    color: #555;
+    flex-shrink: 0;
+    padding-right: 15px;
+    font-size: 0.9em;
+}
+
+.class-schedule-day > div:nth-of-type(2) {
+    flex-grow: 1;
+}
+
+    .class-schedule-day > div:nth-of-type(2) > div {
+        margin-bottom: 3px;
+        font-size: 0.9em;
+    }
+
+        .class-schedule-day > div:nth-of-type(2) > div:last-child {
+            margin-bottom: 0;
+        }
+
+        .class-schedule-day > div:nth-of-type(2) > div:not([class]):first-child {
+            color: #888;
+            font-style: italic;
+            font-weight: normal;
+        }
+
+.class-schedule-day .course-name {
+    font-weight: normal;
+    color: #007bff;
+}
+
+.class-schedule-day > div:nth-of-type(2) > div:nth-of-type(even) {
+    font-size: 0.85em;
+    color: #666;
+    font-weight: normal;
+}
+
+/* Registration Section Header Bar (MODIFIED for margin) */
+.registration-header-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #007bff;
+    color: white;
+    padding: 15px 20px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    /* margin: 20px; */ /* REMOVE THIS LINE, margin handled by parent .right-content gap */
+    margin-bottom: 0;
+}
+
+    .registration-header-bar h2 {
+        color: white;
+        margin: 0;
+        font-size: 1.15em;
+        font-weight: normal;
+    }
+
+.session-dropdown select {
+    background-color: white;
+    color: #007bff;
+    border: 1px solid #007bff;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.95em;
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23007bff" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    padding-right: 30px;
+}
+
+/* Container for course cards (MODIFIED for margin) */
+.course-cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* margin: 0 20px 20px 20px; */ /* REMOVE THIS LINE, margin handled by parent .right-content gap */
+}
+
+/* Course box styling */
+.course-box {
+    background-color: #fff;
+    padding: 20px;
+    width: calc(33.333% - 20px);
+    min-width: 280px;
+    flex-grow: 1;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+    border: 1px solid #e0e0e0;
+}
+
+    .course-box h4 {
+        font-size: 1.1em;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+/* Button-like status tags */
+.section-status-open {
+    background-color: #007bff;
+    color: white;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 0.85em;
+}
+
+.status-valid {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.85em;
+}
+
+    .status-valid:hover,
+    .section-status-open:hover {
+        opacity: 0.9;
+        cursor: default;
+    }
+
+/* Resource buttons - modern blue buttons */
+.resource-buttons-alt {
+    display: flex;
+    justify-content: space-between;
+    margin-top: auto;
+    gap: 10px;
+}
+
+.resource-button-alt {
+    flex: 1;
+    text-align: center;
+    background-color: #007bff;
+    color: white;
+    padding: 8px 0;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.2s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+    .resource-button-alt:hover {
+        background-color: #0056b3;
+    }
+
+    .resource-button-alt i {
+        margin-right: 4px;
+    }
+
+/* Responsive behavior for small screens (MODIFIED) */
+@media (max-width: 768px) {
+    .aiub-header-container {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+    }
+
+    .aiub-nav ul {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .aiub-nav li {
+        width: 100%;
+        text-align: center;
+    }
+
+    .aiub-user-info {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-top: 10px;
+        gap: 5px;
+    }
+
+    /* NEW: Responsive for main-dashboard-layout */
+    .main-dashboard-layout {
+        flex-direction: column; /* Stack sidebar and content vertically on small screens */
+        margin-left: 10px;
+        margin-right: 10px;
+        gap: 15px; /* Reduce gap */
+    }
+
+    .left-sidebar {
+        width: 100%; /* Full width for sidebar on small screens */
+        margin-right: 0; /* Remove right margin */
+        padding: 0; /* Adjust padding for full width */
+    }
+
+    .menu-item a {
+        justify-content: center; /* Center menu items on small screens */
+        padding: 10px;
+    }
+
+    .dropdown-arrow {
+        /* You might want to hide arrow on small screens if not functional or adjust positioning */
+        /* display: none; */
+    }
+
+    .info-box {
+        flex-direction: column;
+    }
+
+    .info-left,
+    .info-right {
+        min-width: unset;
+        width: 100%;
+    }
+
+    .dashboard-heading {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .course-box {
+        width: 100%;
+    }
+
+    /* Adjust padding for other containers on small screens */
+    .teams-info,
+    .class-schedule-container,
+    .registration-header-bar,
+    .course-cards-container {
+        padding: 10px; /* Reduce padding */
+        border-radius: 5px; /* Ensure border-radius is applied */
+    }
+    /* Specific adjustments for info-actions and general-info-box to match teams-info border-radius logic */
+    .general-info-box {
+        border-radius: 0; /* No radius */
+    }
+
+    .info-actions {
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+}
+
+/* Ensure consistent margins for medium screens */
+@media (min-width: 769px) and (max-width: 992px) {
+    .main-dashboard-layout {
+        margin-left: 10px;
+        margin-right: 10px;
+        gap: 15px;
+    }
+
+    .teams-info,
+    .dashboard-heading,
+    .class-schedule-container,
+    .registration-header-bar,
+    .course-cards-container,
+    hr {
+        margin-left: 0; /* Override previous margin */
+        margin-right: 0; /* Override previous margin */
+    }
+
+
+
+   
+}

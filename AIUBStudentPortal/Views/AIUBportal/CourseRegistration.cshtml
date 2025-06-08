@@ -1,0 +1,69 @@
+﻿@model List<AIUBStudentPortal.BLL.DTO.CourseDTO>
+
+<h2>Select up to 5 courses</h2>
+
+@using (Html.BeginForm("ConfirmRegistration", "StudentDashboard", FormMethod.Post))
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Select</th>
+                <th>Name</th>
+                <th>Section</th>
+                <th>Schedule</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var course in Model)
+            {
+                <tr>
+                    <td><input type="checkbox" name="selectedCourseIds" value="@course.Id" class="course-checkbox" /></td>
+                    <td>@course.Name</td>
+                    <td>@course.Section</td>
+                    <td>@course.Schedule</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <button type="submit" class="btn btn-success">Confirm Registration</button>
+}
+
+@if (!string.IsNullOrEmpty(ViewBag.Error as string))
+{
+    <div class="alert alert-danger">@ViewBag.Error</div>
+}
+
+<script>
+    /* const checkboxes = document.querySelectorAll('.course-checkbox');
+     checkboxes.forEach(chk => chk.addEventListener('change', () => {
+         const selected = document.querySelectorAll('.course-checkbox:checked');
+         if (selected.length > 5) {
+             alert("You can select up to 5 courses only!");
+             chk.checked = false;
+         }
+     }));*/
+
+
+ 
+        const checkboxes = document.querySelectorAll('.course-checkbox');
+        const form = document.querySelector('form');
+
+    checkboxes.forEach(chk => chk.addEventListener('change', () => {
+        const selected = document.querySelectorAll('.course-checkbox:checked');
+        if (selected.length > 5) {
+            alert("You can select up to 5 courses only!");
+        chk.checked = false;
+        }
+    }));
+
+        form.addEventListener('submit', function (e) {
+        const selected = document.querySelectorAll('.course-checkbox:checked');
+        if (selected.length !== 5) {
+            alert("Please select exactly 5 courses before submitting.");
+        e.preventDefault();
+        }
+    });
+
+
+</script>

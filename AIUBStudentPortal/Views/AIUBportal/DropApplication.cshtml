@@ -1,0 +1,150 @@
+﻿@model AIUBStudentPortal.BLL.ViewModels.DropApplicationViewModel
+
+
+
+<link href="@Url.Content("~/Content/dashboard.css?v=1")" rel="stylesheet" />
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+
+<div class="aiub-header-container">
+    <div class="aiub-portal-logo">
+        <img src="@Url.Content("~/Content/Images/aiub_logo.png")" alt="AIUB Logo" />
+        <div class="logo-text">
+            <span>AIUB</span>
+            <span>PORTAL</span>
+        </div>
+    </div>
+    <nav class="aiub-nav">
+        <ul>
+            <li>
+                <a href="#" class="nav-link">
+                    <i class="fa-solid fa-book"></i> Courses & Results
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link">
+                    <i class="fa-solid fa-clipboard-list"></i> Registration
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link">
+                    <i class="fa-solid fa-star"></i> Grade Report
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <div class="aiub-user-info">
+        <span class="welcome-text">Welcome @ViewBag.StudentFullName</span>
+
+        <a href="#" class="header-icon-link"><i class="fa-solid fa-bell"></i></a>
+        <a href="#" class="header-icon-link"><i class="fa-solid fa-gear"></i></a>
+        <a href="#" class="header-icon-link"><i class="fa-solid fa-print"></i></a>
+    </div>
+</div>
+
+
+
+
+
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">@TempData["Message"]</div>
+}
+
+<div class="notice-board-message">
+    Please check notice board for all the policies regarding add or drop. You are entitled for a refund of
+    <span class="refund-percentage">0%</span> on tuition fees.
+</div>
+
+
+
+
+<h3>Your Registered Courses</h3>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Course Name</th>
+            <th>Section</th>
+            <th>Schedule</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var course in Model.RegisteredCourses)
+        {
+            <tr>
+                <td>@course.Name</td>
+                <td>@course.Section</td>
+                <td>@course.Schedule</td>
+                <td>
+                    @{
+                        var existingRequest = Model.DropRequests.FirstOrDefault(d => d.CourseId == course.Id && d.Status == "Pending");
+                    }
+                    @if (existingRequest != null)
+                    {
+                        <span class="text-warning">Drop request pending</span>
+                    }
+                    else
+                    {
+                        using (Html.BeginForm("SubmitDropRequest", "StudentDashboard", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.Hidden("courseId", course.Id)
+                            <button type="submit" class="btn btn-danger">Drop</button>
+                        }
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h3>Your Drop Requests</h3>
+@if (Model.DropRequests != null && Model.DropRequests.Any())
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Course</th>
+                <th>Requested On</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var request in Model.DropRequests)
+            {
+                <tr>
+                    <td>@request.CourseName (@request.CourseSection)</td>
+                    <td>@request.RequestDate.ToString("dd-MM-yyyy HH:mm")</td>
+                    <td>@request.Status</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>You have no drop requests.</p>
+}
+
+
+<style>
+    .notice-board-message {
+        background-color: #fff3cd !important;
+        color: #856404 !important;
+        padding: 15px !important;
+        margin-bottom: 20px !important;
+        border: 1px solid #ffeeba !important;
+        border-radius: .25rem !important;
+        text-align: center !important;
+        font-size: 1rem !important;
+    }
+
+    .refund-percentage {
+        font-weight: bold !important;
+        color: #dc3545 !important;
+    }
+</style>

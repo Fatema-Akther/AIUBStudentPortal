@@ -1,0 +1,185 @@
+﻿@model List<AIUBStudentPortal.BLL.DTO.CourseDTO>
+
+@{
+    ViewBag.Title = "Registered Courses";
+    Layout = "~/Views/Shared/_Layout.cshtml"; // Change if your layout path is different
+}
+
+<link href="@Url.Content("~/Content/dashboard.css?v=1")" rel="stylesheet" />
+<link href="@Url.Content("~/Content/Registeredcourse.css?v=1")" rel="stylesheet" />
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<div class="aiub-header-container">
+    <div class="aiub-portal-logo">
+        <img src="@Url.Content("~/Content/Images/aiub_logo.png")" alt="AIUB Logo" />
+        <div class="logo-text">
+            <span>AIUB</span>
+            <span>PORTAL</span>
+        </div>
+    </div>
+    <nav class="aiub-nav">
+        <ul>
+            <li>
+                <a href="#" class="nav-link">
+                    <i class="fa-solid fa-book"></i> Courses & Results
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link">
+                    <i class="fa-solid fa-clipboard-list"></i> Registration
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link">
+                    <i class="fa-solid fa-star"></i> Grade Report
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <div class="aiub-user-info">
+        <span class="welcome-text">Welcome @ViewBag.StudentFullName</span>
+
+        <a href="#" class="header-icon-link"><i class="fa-solid fa-bell"></i></a>
+        <a href="#" class="header-icon-link"><i class="fa-solid fa-gear"></i></a>
+        <a href="#" class="header-icon-link"><i class="fa-solid fa-print"></i></a>
+    </div>
+</div>
+
+<div class="page-title-bar">
+    <div class="page-title-left">
+        <h2>Registration</h2>
+    </div>
+    <div class="page-title-right">
+        <select class="semester-dropdown">
+            <option>2024-2025, Spring</option>
+            <option>2024-2025, Fall</option>
+        </select>
+    </div>
+</div>
+
+<div class="summary-stats-bar">
+    <div class="stat-item">Lecture: <span>13.0</span></div>
+    <div class="stat-item">Science: <span>0</span></div>
+    <div class="stat-item">Computer: <span>1</span></div>
+    <div class="stat-item">Language: <span>0</span></div>
+    <div class="stat-item">Studio: <span>0</span></div>
+    <div class="stat-item">Health Science: <span>0</span></div>
+    <button class="print-button" id="printPaymentButton">Print</button>
+</div>
+
+<div class="main-content-wrapper">
+    <div class="registered-courses-section">
+        <div class="section-header">
+            <span class="header-text">Registered</span>
+            <span class="header-credits-label">Lec-Com-Sci-Lan-Stu-H Sci</span>
+        </div>
+
+        @if (Model != null && Model.Count > 0)
+        {
+            foreach (var course in Model)
+            {
+                <div class="course-item">
+                    <div class="course-info">
+                        <a href="#" class="course-code-name">@course.Name @course.Section</a>
+                        <div class="course-schedule-details">@(course.Schedule != null ? course.Schedule : "")</div>
+                    </div>
+                    <div class="course-credit-breakdown">
+                        <span>3 - 0 - 0 - 0 - 0 - 0</span>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="alert alert-info">
+                You have not registered for any courses yet.
+            </div>
+        }
+
+        </div>
+
+        <div class="financial-summary-section">
+            <div class="summary-line">
+                <span>Admission</span>
+                <span class="amount">0.00</span>
+            </div>
+            <div class="summary-line">
+                <span>Tuition</span>
+                <span class="amount">71,500.00</span>
+            </div>
+            <div class="summary-line">
+                <span>Computer Lab</span>
+                <span class="amount">2,500.00</span>
+            </div>
+            <div class="summary-line">
+                <span>Science Lab</span>
+                <span class="amount">0.00</span>
+            </div>
+            <div class="summary-line">
+                <span>Language Lab</span>
+                <span class="amount">0.00</span>
+            </div>
+            <div class="summary-line">
+                <span>Studio</span>
+                <span class="amount">0.00</span>
+            </div>
+            <div class="summary-line">
+                <span>Health Science</span>
+                <span class="amount">0.00</span>
+            </div>
+            <div class="summary-line">
+                <span>Development</span>
+                <span class="amount">0.00</span>
+            </div>
+            <div class="summary-line">
+                <span>Verification Fee</span>
+                <span class="amount">0.00</span>
+            </div>
+            <div class="summary-line">
+                <span>Miscellaneous</span>
+                <span class="amount">3,500.00</span>
+            </div>
+            <div class="summary-line total-line">
+                <span>Total</span>
+                <span class="amount">77,500.00</span>
+            </div>
+            <div class="summary-line">
+                <span>Deduction</span>
+                <span class="amount">0.00</span>
+            </div>
+            <div class="summary-line">
+                <span>Prev. Balance</span>
+                <span class="amount">0.00</span>
+            </div>
+            <div class="summary-line net-total-line">
+                <span>Net Total</span>
+                <span class="amount">77,500.00</span>
+            </div>
+            <div class="summary-line amount-paid-line">
+                <span>Amount Paid</span>
+                <span class="amount">8,500.00</span>
+            </div>
+            <div class="summary-line balance-line">
+                <span>Balance</span>
+                <span class="amount">69,000.00</span>
+            </div>
+        </div>
+    </div>
+
+
+<script>
+    // registeredCoursePrint.js
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const printButton = document.getElementById('printPaymentButton');
+
+        if (printButton) {
+            printButton.addEventListener('click', function () {
+                // This line triggers the browser's print dialog
+                window.print();
+            });
+        }
+    });
+</script>

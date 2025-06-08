@@ -1,0 +1,36 @@
+﻿@model List<AIUBStudentPortal.DAL.Entities.Student>
+
+@{
+    ViewBag.Title = "Registered Students";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Registered Students</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Full Name</th>
+            <th>Student ID</th>
+            <th>Email</th>
+            <th>Department</th>
+            <th>Contact</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model)
+        {
+            <tr>
+                <td>@student.FullName</td>
+                <td>@student.StudentID</td>
+                <td>@student.Email</td>
+                <td>@student.Department</td>
+                <td>@student.ContactNumber</td>
+                <td>
+                    @Html.ActionLink("Registered Courses", "RegisteredCourses", "Admin", new { studentId = student.Id }, new { @class = "btn btn-info btn-sm" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

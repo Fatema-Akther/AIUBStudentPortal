@@ -1,0 +1,444 @@
+﻿/* General Body and Container Resets/Base Styles */
+body {
+    font-family: Arial, sans-serif; /* Demo seems to use a standard sans-serif */
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5; /* Light grey background */
+}
+
+/* Ensure your existing AIUB header is styled correctly */
+.aiub-header-container {
+    padding: 10px 20px; /* Adjust as needed */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow */
+    background-color: white; /* Ensure it's white as in your image */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.aiub-portal-logo {
+    display: flex;
+    align-items: center;
+}
+
+    .aiub-portal-logo img {
+        height: 40px; /* Adjust size */
+        margin-right: 10px;
+    }
+
+    .aiub-portal-logo .logo-text {
+        font-weight: bold;
+        font-size: 1.2em; /* Adjust size */
+        color: #333;
+        line-height: 1; /* Prevent extra spacing */
+    }
+
+        .aiub-portal-logo .logo-text span:first-child {
+            display: block; /* Make AIUB on its own line */
+        }
+
+.aiub-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex; /* Make nav links horizontal */
+}
+
+.aiub-nav li {
+    margin-right: 20px;
+}
+
+.aiub-nav .nav-link {
+    text-decoration: none;
+    color: #337ab7; /* Blue as in your image */
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+    .aiub-nav .nav-link i {
+        margin-right: 5px;
+    }
+
+.aiub-user-info {
+    display: flex;
+    align-items: center;
+}
+
+    .aiub-user-info .welcome-text {
+        margin-right: 20px;
+        color: #555;
+        font-size: 15px;
+    }
+
+    .aiub-user-info .header-icon-link {
+        color: #555;
+        font-size: 18px;
+        margin-left: 15px;
+        text-decoration: none;
+    }
+/* END aiub-header-container styles */
+
+
+/* 1. Page Title Bar (Blue Bar - as in 2nd.png demo) */
+.page-title-bar {
+    background-color: #337ab7; /* Demo's blue color */
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-radius: 5px; /* Slight rounded corners for the bar */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+    .page-title-bar h2 {
+        margin: 0;
+        font-size: 24px; /* Adjust size to match demo */
+        font-weight: normal; /* Demo's font weight is not bold */
+    }
+
+.semester-dropdown {
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: 1px solid #ccc; /* Light border */
+    background-color: white;
+    color: #333;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* 2. Summary Statistics Bar (as in 2nd.png demo) */
+.summary-stats-bar {
+    display: flex;
+    flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+    align-items: center;
+    background-color: white; /* White background */
+    border: 1px solid #e0e0e0; /* Light grey border */
+    border-radius: 5px;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05); /* Subtle shadow */
+}
+
+    .summary-stats-bar .stat-item {
+        margin-right: 30px; /* Space between stats */
+        font-size: 16px;
+        color: #555;
+        font-weight: 500; /* Slightly bolder */
+    }
+
+        .summary-stats-bar .stat-item span {
+            font-weight: bold; /* Make the number bold */
+            color: #333;
+            margin-left: 5px;
+        }
+
+.print-button {
+    background-color: #d9534f; /* Red color from demo */
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: auto; /* Pushes the print button to the far right */
+    transition: background-color 0.2s ease;
+}
+
+    .print-button:hover {
+        background-color: #c9302c; /* Darker red on hover */
+    }
+
+/* 3. Main Content Area (Two Columns - as in 2nd.png demo) */
+.main-content-wrapper {
+    display: flex;
+    gap: 20px; /* Space between the two columns */
+    padding: 0 20px 20px 20px; /* Add some horizontal and bottom padding to the wrapper */
+}
+
+/* Left Column: Registered Courses Section */
+.registered-courses-section {
+    flex: 3; /* Takes up more space, e.g., 60-70% of width */
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    padding: 15px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee; /* Light line below header */
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: #666;
+}
+
+    .section-header .header-text {
+        font-size: 16px;
+    }
+
+    /* Refinement for the header credits label, as it's directly above the items now */
+    .section-header .header-credits-label {
+        font-size: 13px; /* Slightly smaller for the label */
+        color: #888; /* Lighter color */
+        font-weight: normal; /* Not bold */
+    }
+
+
+.registered-courses-section .alert {
+    margin-top: 15px; /* Add some space above the alert */
+}
+
+/* New styles for the course list items */
+.course-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Align content to the top */
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0; /* Very light border between items */
+    font-size: 14px;
+}
+
+    .course-item:last-child {
+        border-bottom: none; /* No border for the last item */
+    }
+
+.course-info {
+    flex: 1; /* Takes up available space */
+    margin-right: 15px; /* Space between info and breakdown */
+}
+
+.course-code-name {
+    color: #007bff; /* Blue link color as in demo */
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 15px;
+    display: block; /* Make the link take full width for better click area */
+    margin-bottom: 4px;
+}
+
+    .course-code-name:hover {
+        text-decoration: underline;
+    }
+
+.course-schedule-details {
+    font-size: 13px;
+    color: #777;
+    line-height: 1.4; /* Better readability for multiple lines */
+}
+
+.course-credit-breakdown {
+    font-size: 14px;
+    font-weight: 500;
+    color: #555;
+    min-width: 150px; /* Ensure enough space for the breakdown numbers */
+    text-align: right; /* Align credits to the right */
+}
+
+
+/* Right Column: Financial Summary Section (as in 2nd.png demo) */
+.financial-summary-section {
+    flex: 1; /* Takes up less space, e.g., 30-40% of width */
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    padding: 15px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+    .financial-summary-section .summary-line {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 0;
+        border-bottom: 1px solid #eee; /* Light border between lines */
+        font-size: 14px;
+        color: #555;
+    }
+
+        .financial-summary-section .summary-line:last-child {
+            border-bottom: none;
+        }
+
+        .financial-summary-section .summary-line .amount {
+            font-weight: bold;
+            color: #333;
+            /* Added/Modified for input-like appearance */
+            background-color: #f5f5f5; /* Light grey background */
+            border: 1px solid #e0e0e0; /* Light border */
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 14px;
+            min-width: 80px; /* Ensure consistent width for amounts */
+            text-align: right;
+            display: inline-block; /* To apply padding and border */
+            box-sizing: border-box; /* Include padding and border in width */
+        }
+
+    /* Specific styling for total/net total/balance lines */
+    .financial-summary-section .total-line,
+    .financial-summary-section .net-total-line,
+    .financial-summary-section .balance-line {
+        font-weight: bold;
+        color: #000;
+        font-size: 15px;
+        padding-top: 12px; /* More padding for emphasis */
+        padding-bottom: 12px;
+    }
+
+        /* Adjust specific amounts for the demo look (some are not backgrounded in the demo) */
+        .financial-summary-section .total-line .amount,
+        .financial-summary-section .net-total-line .amount,
+        .financial-summary-section .amount-paid-line .amount, /* Added this line to remove background for Amount Paid */
+        .financial-summary-section .balance-line .amount {
+            background-color: transparent; /* Remove background for these totals */
+            border: none; /* Remove border for these totals */
+            padding: 0; /* Remove padding */
+        }
+
+    .financial-summary-section .balance-line {
+        color: #d9534f; /* Red for the final balance, as in demo */
+        font-size: 18px; /* Larger font for balance */
+    }
+
+        .financial-summary-section .balance-line .amount {
+            color: #d9534f; /* Keep red color for balance amount specifically */
+        }
+
+
+/* Basic responsive adjustments (optional but good practice) */
+@media (max-width: 992px) {
+    .main-content-wrapper {
+        flex-direction: column; /* Stack columns on smaller screens */
+        padding: 0 10px 10px 10px; /* Adjust padding for smaller screens */
+    }
+
+    .registered-courses-section,
+    .financial-summary-section {
+        flex: none; /* Remove flex sizing */
+        width: 100%; /* Take full width */
+        margin-bottom: 20px; /* Add space between stacked sections */
+    }
+
+        .financial-summary-section:last-child {
+            margin-bottom: 0; /* No bottom margin for the very last section */
+        }
+}
+
+@media (max-width: 768px) {
+    .summary-stats-bar {
+        justify-content: center; /* Center items if they wrap */
+        padding: 15px 10px; /* Reduce padding */
+    }
+
+        .summary-stats-bar .stat-item {
+            margin-right: 15px; /* Reduce margin */
+            margin-bottom: 10px; /* Add bottom margin if wrapping */
+            flex-basis: auto; /* Allow items to size naturally */
+        }
+
+    .print-button {
+        margin-left: unset; /* Remove auto margin to allow centering */
+        width: 100%; /* Make button full width */
+        margin-top: 10px; /* Add space above button if it wraps */
+    }
+
+    .page-title-bar {
+        flex-direction: column; /* Stack title and dropdown */
+        align-items: flex-start; /* Align to start */
+        padding: 10px 15px;
+    }
+
+        .page-title-bar h2 {
+            margin-bottom: 10px; /* Space between title and dropdown */
+        }
+
+    .semester-dropdown {
+        width: 100%; /* Full width dropdown */
+    }
+}
+
+
+/* Print-specific styles */
+@media print {
+    /* Hide elements that shouldn't be printed */
+    .aiub-header-container, /* Hide the main header */
+    .aiub-nav, /* Hide navigation */
+    .aiub-user-info, /* Hide user info */
+    .page-title-bar, /* Hide the blue title bar */
+    .semester-dropdown, /* Hide the dropdown */
+    .print-button, /* Hide the print button itself */
+    /* Add any other elements you want to hide */
+    footer /* If you have a footer, hide it */ {
+        display: none;
+    }
+
+    /* Adjust layout for print */
+    body {
+        background-color: white; /* Print on white background */
+        margin: 0;
+        padding: 0;
+        font-size: 12pt; /* Adjust base font size for print */
+    }
+
+    .main-content-wrapper {
+        display: block; /* Remove flexbox for print if it causes layout issues */
+        width: 100%;
+        padding: 0; /* Remove padding from main content wrapper */
+    }
+
+    .registered-courses-section,
+    .financial-summary-section {
+        border: none; /* Remove borders for a cleaner print */
+        box-shadow: none; /* Remove shadows */
+        padding: 0; /* Remove padding */
+        margin-bottom: 0; /* Remove bottom margin */
+        width: 100%; /* Ensure full width */
+    }
+
+    .section-header {
+        border-bottom: 1px solid #ccc; /* Keep a subtle line for headers */
+        margin-bottom: 10px;
+        padding-bottom: 5px;
+    }
+
+    .course-item {
+        border-bottom: 1px dashed #eee; /* Lighter border for course items */
+        padding: 8px 0;
+    }
+
+        .course-item:last-child {
+            border-bottom: none;
+        }
+
+    .course-code-name {
+        color: #333; /* Make links black for print */
+        text-decoration: none;
+    }
+
+    .course-schedule-details,
+    .course-credit-breakdown {
+        color: #000; /* Ensure text is black for print */
+    }
+
+    .summary-stats-bar {
+        border: 1px solid #ddd;
+        padding: 10px;
+        margin-top: 20px;
+    }
+
+    .financial-summary-section .summary-line .amount {
+        background-color: transparent; /* Ensure no background colors for amounts */
+        border: none;
+        padding: 0;
+    }
+
+    .financial-summary-section .balance-line .amount {
+        color: #d9534f; /* Keep red color for balance */
+    }
+}

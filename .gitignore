@@ -1,0 +1,29 @@
+# Ignore build files
+bin/
+obj/
+.vs/
+*.user
+*.suo
+*.cache
+*.log
+
+# Ignore NuGet packages
+packages/
+*.nupkg
+
+# Ignore compiled DLLs/PDBs
+*.dll
+*.pdb
+
+# Ignore temporary files
+*.tmp
+*.bak
+*.swp
+*.DS_Store
+Thumbs.db
+
+# Rider/JetBrains IDE files
+.idea/
+
+# ASP.NET specific
+App_Data/

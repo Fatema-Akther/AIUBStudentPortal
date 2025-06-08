@@ -1,0 +1,42 @@
+﻿@model List<AIUBStudentPortal.BLL.DTO.DropApplicationDTO>
+
+<h2>Drop Requests</h2>
+<table class="table">
+    <tr>
+        <th>StudentId</th>
+        <th>Course</th>
+        <th>Section</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+    @foreach (var request in Model)
+    {
+        <tr>
+            <td>@request.StudentId</td>
+            <td>@request.CourseName</td>
+            <td>@request.CourseSection</td>
+            <td>@request.Status</td>
+            <td>
+                @if (request.Status == "Pending")
+                {
+                    using (Html.BeginForm("UpdateDropStatus", "Admin", FormMethod.Post))
+                    {
+                        @Html.Hidden("id", request.Id)
+                        @Html.Hidden("status", "Dropped")
+                        <button type="submit" class="btn btn-success">Accept</button>
+                    }
+                    using (Html.BeginForm("UpdateDropStatus", "Admin", FormMethod.Post))
+                    {
+                        @Html.Hidden("id", request.Id)
+                        @Html.Hidden("status", "Rejected")
+                        <button type="submit" class="btn btn-danger">Reject</button>
+                    }
+                }
+                else
+                {
+                    <span>@request.Status</span>
+                }
+            </td>
+        </tr>
+    }
+</table>

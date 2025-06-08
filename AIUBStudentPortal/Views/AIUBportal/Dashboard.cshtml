@@ -1,0 +1,307 @@
+﻿@model List<AIUBStudentPortal.BLL.DTO.DailyClassDTO>
+
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string studentId = Session["StudentID"]?.ToString();
+    bool isRegistered = ViewBag.HasRegistered ?? false;
+}
+
+<link href="~/Content/dashboard.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+<div class="aiub-header-container">
+    <div class="aiub-portal-logo">
+        <img src="@Url.Content("~/Content/Images/aiub_logo.png")" alt="AIUB Logo" />
+        <div class="logo-text">
+            <span>AIUB</span>
+            <span>PORTAL</span>
+        </div>
+    </div>
+    <nav class="aiub-nav">
+        <ul>
+            <li>
+                <a href="#" class="nav-link">
+                    <i class="fa-solid fa-book"></i> Courses & Results
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link">
+                    <i class="fa-solid fa-clipboard-list"></i> Registration
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link">
+                    <i class="fa-solid fa-star"></i> Grade Report
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <div class="aiub-user-info">
+        <span class="welcome-text">Welcome @ViewBag.StudentFullName</span>
+
+        <a href="#" class="header-icon-link"><i class="fa-solid fa-bell"></i></a>
+        <a href="#" class="header-icon-link"><i class="fa-solid fa-gear"></i></a>
+        <a href="#" class="header-icon-link"><i class="fa-solid fa-print"></i></a>
+    </div>
+</div>
+
+
+<div class="main-dashboard-layout">
+    <div class="left-sidebar">
+        <ul>
+            <li class="menu-item has-submenu active">
+                @* Added 'has-submenu' class, kept 'active' for initial state **@
+                <a href="#">
+                    <i class="fa-solid fa-graduation-cap menu-icon"></i>
+                    Academics
+                    <span class="dropdown-arrow">&#9660;</span>
+                </a>
+                <ul class="submenu">
+                    @* Added this submenu UL **@
+                    <li>
+                        <a href="#"><i class="fa-solid fa-list-ul sub-menu-icon"></i> Courses & Results</a>
+                    </li>
+
+                    <li>
+                        <a href="@Url.Action("RegisteredCourses", "StudentDashboard")" class="nav-link">
+                            <i class="fa-solid fa-clipboard-list"></i> Registration
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <a href="@Url.Action("DropApplication", "StudentDashboard")"><i class="fa-solid fa-bolt sub-menu-icon"></i> Drop Application</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa-solid fa-file-invoice sub-menu-icon"></i> Offered Courses</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa-solid fa-book sub-menu-icon"></i> My Curriculum</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa-solid fa-dollar-sign sub-menu-icon"></i> Financials</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="menu-item has-submenu">
+                <a href="#">
+                    <i class="fa-solid fa-file-invoice menu-icon"></i>
+                    Grade Reports
+                    <span class="dropdown-arrow">&#9660;</span>
+                </a>
+                <ul class="submenu">
+                    <li>
+                        <a href="#"><i class="fa-solid fa-star sub-menu-icon"></i> By Curriculum</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa-solid fa-star sub-menu-icon"></i> By Semester</a>
+                    </li>
+                </ul>
+            </li>
+           
+            <li class="menu-item">
+                <a href="#">
+                    <i class="fa-solid fa-book-open menu-icon"></i>
+                    Library
+                    <span class="dropdown-arrow">&#9660;</span>
+                </a>
+            </li>
+
+
+
+            <li class="menu-item has-submenu">
+                @* Added 'has-submenu' class *@
+                <a href="#">
+                    <i class="fa-solid fa-ellipsis menu-icon"></i>
+                    Others
+                    <span class="dropdown-arrow">&#9660;</span>
+                </a>
+                <ul class="submenu">
+                    @* Added this submenu UL *@
+
+
+
+                    <li>
+                        <a href="https://www.aiub.edu/academic-calendar" target="_blank"><i class="fa-solid fa-calendar-alt sub-menu-icon"></i> Academic Calendar</a>
+                    </li>
+
+
+                                </ul>
+                            </li>
+
+
+                            <li class="menu-item">
+                                <a href="#">
+                                    <i class="fa-solid fa-envelope menu-icon"></i>
+                                    Messages
+                                    <span class="dropdown-arrow">&#9660;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="right-content">
+                        <div class="teams-info">
+                            <div class="info-box">
+                                <div class="info-left">
+                                    <h4>Please use the below information to log in to Microsoft Teams.</h4>
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td><strong>User Name</strong></td>
+                                                <td>:</td>
+                                                <td>@($"{studentId}@student.aiub.edu")</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Password</strong></td>
+                                                <td>:</td>
+                                                <td>Far75227</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="info-right">
+                                    <div class="teams-login-card">
+                                        <h4>How to log in to Microsoft Teams with one time password.</h4>
+                                        <button class="download-btn">Download</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="general-info-box">
+                                <p>
+                                    <strong>Please provide your general information correctly through</strong>
+                                    <a href="@Url.Action("EditGeneralInfo", "StudentDashboard")" class="link-blue">
+                                        General Information Change Application
+                                    </a>
+                                </p>
+                            </div>
+
+                            <div class="info-actions">
+                                <button class="info-btn">Submit Identity Information</button>
+                                <button class="info-btn">Covid-19 Vaccine Information</button>
+                            </div>
+                        </div>
+
+                        <div class="dashboard-heading">
+                            @if (isRegistered)
+                            {
+                                <a href="@Url.Action("RegisteredCourses", "StudentDashboard")" class="btn btn-success">
+                                    Show Registered Courses
+                                </a>
+
+                            }
+                            else
+                            {
+                                <p>You have not registered for any courses yet.</p>
+                                <a href="@Url.Action("CourseRegistration", "StudentDashboard")" class="btn btn-primary">
+                                    Register for Courses
+                                </a>
+                            }
+                        </div>
+
+                        <hr />
+
+                        @if (isRegistered && Model != null && Model.Any())
+                        {
+                            <div class="class-schedule-container">
+                                <h2>Class Schedule</h2>
+
+                                @foreach (var day in Model)
+                                {
+                                    <div class="class-schedule-day">
+                                        <div class="class-schedule-date">
+                                            @day.DateLabel
+                                        </div>
+                                        <div>
+                                            @if (day.Courses == null || !day.Courses.Any())
+                                            {
+                                                <div>No class today</div>
+                                            }
+                                            else
+                                            {
+                                                foreach (var course in day.Courses)
+                                                {
+                                                    <div class="course-name">@course.Name (@course.Section)</div>
+                                                    <div>Time: <b>@course.Schedule</b></div>
+                                                    <br />
+                                                }
+                                            }
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+
+                            <hr />
+
+                            <div>
+                                <div class="registration-header-bar">
+                                    <h2>Registration</h2>
+                                    <div class="session-dropdown">
+                                        <select>
+                                            <option value="2024-2025-spring">2024-2025, Spring</option>
+                                            <option value="2024-2025-fall">2024-2025, Fall</option>
+                                            <option value="2023-2024-spring">2023-2024, Spring</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="course-cards-container">
+                                    @foreach (var day in Model)
+                                    {
+                                        foreach (var course in day.Courses)
+                                        {
+                                            <div class="course-box">
+                                                <h4>@course.Name (@course.Section)</h4>
+                                                <p><strong>Status:</strong> <span class="status-valid">Valid</span></p>
+                                                <p><strong>Section Status:</strong> <span class="section-status-open">Open</span></p>
+                                                <p><strong>Result:</strong> -</p>
+
+                                                <div class="resource-buttons-alt">
+                                                    <a href="@Url.Action("TSF", "StudentDashboard", new { courseId = course.Id })" class="resource-button-alt">
+                                                        <i class="fa-solid fa-file-lines"></i> TSF
+                                                    </a>
+                                                    <a href="@Url.Action("Notes", "StudentDashboard", new { courseId = course.Id })" class="resource-button-alt">
+                                                        <i class="fa-solid fa-note-sticky"></i> Notes
+                                                    </a>
+                                                    <a href="@Url.Action("Notice", "StudentDashboard", new { courseId = course.Id })" class="resource-button-alt">
+                                                        <i class="fa-solid fa-bell"></i> Notice
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                @section scripts {
+                    <script>
+                        $(document).ready(function () {
+                            // Toggle submenu on click for items with 'has-submenu'
+                            $('.has-submenu > a').on('click', function (e) {
+                                e.preventDefault(); // Prevent default link behavior
+                                var parentLi = $(this).parent('.has-submenu');
+
+                                // Close other open submenus
+                                $('.has-submenu.active').not(parentLi).each(function() {
+                                    $(this).removeClass('active');
+                                    $(this).find('.submenu').slideUp(200);
+                                });
+
+                                parentLi.toggleClass('active'); // Toggle 'active' class on the clicked parent LI
+                                parentLi.find('.submenu').slideToggle(200); // Toggle the submenu with slide effect
+                            });
+
+                            // If a non-submenu item is clicked, ensure all submenus are closed (optional, for cleaner UX)
+                            $('.left-sidebar .menu-item:not(.has-submenu) a').on('click', function() {
+                                $('.has-submenu.active .submenu').slideUp(200);
+                                $('.has-submenu').removeClass('active');
+                            });
+                        });
+                    </script>
+                }

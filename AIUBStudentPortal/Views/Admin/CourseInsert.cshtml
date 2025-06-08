@@ -1,0 +1,33 @@
+﻿@model AIUBStudentPortal.BLL.DTO.CourseDTO
+
+@{
+    ViewBag.Title = "Insert Course";
+}
+
+<h2>Insert Course</h2>
+
+@using (Html.BeginForm("CourseInsert", "Admin", FormMethod.Post))
+{
+    <div>
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+    </div>
+
+    <div>
+        @Html.LabelFor(m => m.Section)
+        @Html.TextBoxFor(m => m.Section, new { @class = "form-control" })
+    </div>
+
+    <div>
+        @Html.LabelFor(m => m.Schedule)
+        @Html.TextBoxFor(m => m.Schedule, new { @class = "form-control" })
+    </div>
+
+    <br />
+    <input type="submit" value="Insert" class="btn btn-success" />
+}
+
+@if (ViewBag.Message != null)
+{
+    <p class="text-success">@ViewBag.Message</p>
+}

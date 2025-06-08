@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "Admin Login";
+}
+
+<h2>Admin Login</h2>
+
+@if (ViewBag.Error != null)
+{
+    <div style="color:red">@ViewBag.Error</div>
+}
+
+<form method="post" action="/Admin/Login">
+    <div>
+        <label>Admin ID</label>
+        <input type="text" name="adminId" required />
+    </div>
+    <div>
+        <label>Password</label>
+        <input type="password" name="password" required />
+    </div>
+    <button type="submit">Login</button>
+</form>

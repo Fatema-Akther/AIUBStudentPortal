@@ -1,0 +1,41 @@
+﻿@model AIUBStudentPortal.BLL.DTOs.StudentDTO
+
+@{
+   
+    <link href="~/Content/LoginStyles.css" rel="stylesheet" type="text/css" />
+}
+
+<div class="login-page-container">
+    <div class="login-box">
+       <img src="@Url.Content("~/Content/Images/aiub_logo.png")" alt="AIUB Logo"  class="university-logo" />
+        <h1 class="university-name">AMERICAN INTERNATIONAL UNIVERSITY-BANGLADESH</h1>
+        <p class="university-tagline">— where leaders are created.</p>
+
+        <p class="sign-in-prompt">Sign in with your organizational id number.</p>
+
+        @using (Html.BeginForm("Login", "AIUBportal", FormMethod.Post))
+        {
+            @* We'll hide the default labels visually and use placeholders for a cleaner look like the demo. *@
+            @Html.LabelFor(m => m.StudentID, new { @class = "sr-only" })
+            @Html.TextBoxFor(m => m.StudentID, new { @class = "form-control", placeholder = "Organizational ID number", @autocomplete = "off" })
+            @Html.ValidationMessageFor(m => m.StudentID, "", new { @class = "field-validation-error" })
+
+
+            @Html.LabelFor(m => m.Password, new { @class = "sr-only" })
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password", @autocomplete = "off" })
+            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "field-validation-error" })
+
+            <input type="submit" value="Log In" class="btn btn-primary btn-block" />
+        }
+
+        <a href="#" class="forgot-password-link">Can't access your account?</a>
+
+        @if (ViewBag.Error != null)
+        {
+            <p class="error-message">@ViewBag.Error</p>
+        }
+    </div>
+</div>
+
+@* The original <h2>Student Login</h2> is removed as the demo doesn't have it and
+    the logo/university name serves a similar purpose. *@
